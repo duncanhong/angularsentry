@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app="todoApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="https://browser.sentry-cdn.com/5.15.4/bundle.min.js" integrity="sha384-Nrg+xiw+qRl3grVrxJtWazjeZmUwoSt0FAVsbthlJ5OMpx0G08bqIq3b/v0hPjhB" crossorigin="anonymous"></script>
+
+    <!-- If you include the integration it will be available under Sentry.Integrations.Angular -->
+    <script src="https://browser.sentry-cdn.com/5.15.4/angular.min.js" crossorigin="anonymous"></script>
+    
+    <script>
+      Sentry.init({
+        dsn: 'https://3a332a142f8b4df3a8cff37639a54f36@o375293.ingest.sentry.io/5194467',
+        integrations: [
+          new Sentry.Integrations.Angular(),
+        ],
+      });
+    </script>    
+    <script src="todo.js"></script>
+    <link rel="stylesheet" href="todo.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css">
+  </head>
+  <body>
+    <h2>Sentry Example</h2>
+    <div ng-controller="TodoListController as todoList">
+    <span>My to do list:</span>
+      <ul class="unstyled">
+        <li ng-repeat="todo in todoList.todos">
+            <span>{{todo.text}}</span>
+        </li>
+      </ul>
+      <form ng-submit="todoList.addTodo()">
+        <input type="text" ng-model="todoList.todoText"  size="30"
+               placeholder="add new todo here">
+        <input class="btn-primary" type="submit" value="add">
+      </form>
+    </div>
+  </body>
+</html>
+
+<!-- 
+Copyright 2020 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->
